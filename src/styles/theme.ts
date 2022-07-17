@@ -5,6 +5,7 @@ const size = {
   lg: '50px',
   xl: '300px',
   xxl: '500px',
+  xxxl: '1250px',
 }
 
 const grayFonts = '#999999'

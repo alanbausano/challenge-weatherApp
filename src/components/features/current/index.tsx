@@ -5,7 +5,9 @@ import { Strings } from '../../../enums/Enums'
 import { useWeathers } from '../../../hooks/useWeathers'
 import {
   StyledCard,
+  StyledCenteredCol,
   StyledCenteredContainer,
+  StyledHeader,
   StyledInfo,
   StyledInfoTitle,
   StyledLargeInfo,
@@ -13,7 +15,8 @@ import {
   StyledRow,
   StyledTitle,
 } from '../../../styles/globalStyledComponents'
-import cloud from '../../../icons/03d.png'
+import { NextDays } from '../nextDays'
+import { Select } from '../Select'
 
 export const CurrentLocation = () => {
   const BAIRES_GEOLOCATION = {
@@ -22,7 +25,8 @@ export const CurrentLocation = () => {
   }
   const [latitude, setLatitude] = useState<number | undefined>()
   const [longitude, setLongitude] = useState<number | undefined>()
-  const { data } = useWeathers({
+
+  const { data, main, description, icon, daily } = useWeathers({
     lat: latitude === undefined ? BAIRES_GEOLOCATION.lat : latitude,
     lon: longitude === undefined ? BAIRES_GEOLOCATION.lon : longitude,
   })
@@ -35,28 +39,57 @@ export const CurrentLocation = () => {
 
   const timezone = data?.timezone.replaceAll('_', ' ')
   const fullTimezone = timezone?.replaceAll('/', ' ')
+
   return (
     <StyledCenteredContainer>
       <StyledCard>
-        <StyledInfo>{Strings.CURRENT_LOCATION}</StyledInfo>
-        <StyledTitle>{fullTimezone}</StyledTitle>
-        <StyledRow>
+        <StyledHeader>
+          <StyledCenteredCol>
+            <StyledInfo>{Strings.CURRENT_LOCATION}</StyledInfo>
+            <StyledTitle>{fullTimezone}</StyledTitle>
+            <StyledInfo>
+              {data?.current.dt
+                ? new Date(data.current.dt * 1000).toLocaleString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })
+                : undefined}
+            </StyledInfo>
+          </StyledCenteredCol>
+          <StyledCenteredCol>
+            <StyledInfo>{Strings.CHOOSE_LOCATION}</StyledInfo>
+            <Select />
+          </StyledCenteredCol>
+        </StyledHeader>
+        <StyledRow className="main">
+          <StyledCenteredCol>
+            <img src={`http://openweathermap.org/img/wn/${icon}.png`} alt="icon" />
+            {description}
+          </StyledCenteredCol>
           <Col>
             <StyledLargeInfo>
-              <img src={cloud} alt="cloud" />
               {data?.current.temp && `${Math.round(data?.current.temp)}°C`}
             </StyledLargeInfo>
           </Col>
-          <Row>
-            <Col>
+          <Col>
+            <Row>
               <StyledInfoTitle>{Strings.HUMIDITY}</StyledInfoTitle>
-              <StyledMediumInfo>{data?.current.humidity} %</StyledMediumInfo>
-            </Col>
-            <Col>
+              <StyledMediumInfo>{data?.current.humidity}%</StyledMediumInfo>
+            </Row>
+            <Row>
               <StyledInfoTitle>{Strings.WIND}</StyledInfoTitle>
               <StyledMediumInfo>{data?.current.wind_speed} km/h</StyledMediumInfo>
-            </Col>
-          </Row>
+            </Row>
+            <Row>
+              <StyledInfoTitle>{Strings.CURRENTLY}</StyledInfoTitle>
+              <StyledMediumInfo>{main}</StyledMediumInfo>
+            </Row>
+          </Col>
+        </StyledRow>
+        <StyledRow>
+          <NextDays daily={daily} />
         </StyledRow>
       </StyledCard>
     </StyledCenteredContainer>

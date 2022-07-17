@@ -8,4 +8,6 @@ export enum Strings {
   CURRENT_LOCATION = 'Your current location',
   HUMIDITY = 'Humidity: ',
   WIND = 'Wind: ',
+  CURRENTLY = 'Currently: ',
+  CHOOSE_LOCATION = 'Choose a different location',
 }

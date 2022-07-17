@@ -9,11 +9,18 @@ const useWeathers = (filters: Filters) => {
     WeatherApi.getWeather(filters),
   )
 
-  const icon = data?.current.weather.map(e => e.icon)
+  const icon = data?.current.weather.map(w => w.icon)
+  const main = data?.current.weather.map(w => w.main)
+  const description = data?.current.weather.map(w => w.description)
+  const daily = data?.daily
+
   return {
     data,
     isLoading,
     icon,
+    main,
+    description,
+    daily,
   }
 }
 
