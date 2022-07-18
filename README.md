@@ -6,14 +6,14 @@ Para poder ver los datos de tu ubicación se debe habilitar la geolocalización 
 De no estar habilitada, se cargan datos de una ciudad por defecto.
 
 ## Tecnologías front
-React
+React - TypeScript
 
 ## Librerías
-AntDesign, styled-components, React Query, Axios.  
+AntDesign, styled-components, React Query y Axios.  
 
 ## Para correr local:
 ### Instalar dependencias con npm y luego correr la aplicación
 ```
 $ npm install
-& npm start
+$ npm start
 ```
