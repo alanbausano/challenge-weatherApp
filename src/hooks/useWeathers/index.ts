@@ -7,9 +7,9 @@ import { WeatherApi } from './api'
 
 const useWeathers = (filter: Filter) => {
   const onError = () => {
-    notification.error({
-      message: 'Geolocation not found',
-      description: 'You must enable your geolocation',
+    notification.warning({
+      message: 'Coordinates not found',
+      description: 'Please enable your geolocation',
     })
   }
   const { data, isLoading } = useQuery(
@@ -17,7 +17,6 @@ const useWeathers = (filter: Filter) => {
     () => WeatherApi.getWeather(filter),
     {
       onError,
-      retry: 1,
     },
   )
 
