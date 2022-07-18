@@ -67,7 +67,7 @@ export type WeatherResponseType = {
   daily: Daily
 }
 
-export type Filters = {
-  lat: number
-  lon: number
+export type Filter = {
+  lat: number | undefined
+  lon: number | undefined
 }

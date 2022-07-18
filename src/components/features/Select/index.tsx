@@ -1,19 +1,30 @@
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.min.css'
+import { BaseOptionType, DefaultOptionType } from 'antd/lib/select'
+
 import { StyledSelect } from '../../../styles/globalStyledComponents'
 
-export const Select = () => {
+interface SelectProps {
+  handleOnChange: (
+    value: unknown,
+    option: DefaultOptionType | BaseOptionType | (DefaultOptionType | BaseOptionType)[],
+  ) => void
+}
+export const Select = ({ handleOnChange }: SelectProps) => {
   const options = [
-    { value: 'lon', label: 'Londres' },
-    { value: 'par', label: 'Paris' },
-    { label: 'Tokyo', value: 'tok' },
+    { value: 'ber', label: 'Berlin' },
+    { value: 'tok', label: 'Tokyo' },
+    { value: 'mos', label: 'Moscow' },
+    { value: 'san', label: 'Los Angeles' },
+    { value: 'sao', label: 'Sao Paulo' },
+    { value: 'current', label: 'My current location' },
   ]
   return (
     <StyledSelect
       maxTagCount="responsive"
+      onChange={handleOnChange}
       allowClear
       showSearch
       placeholder="Location"
-      value={options.values}
       options={options}
     />
   )

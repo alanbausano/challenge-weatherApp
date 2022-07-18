@@ -13,12 +13,11 @@ interface NextDaysProps {
 }
 export const NextDays = ({ daily }: NextDaysProps) => {
   const fiveNextDays = daily?.slice(1, 6)
-
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {fiveNextDays?.map(d => (
-        <StyledDayCard>
+        <StyledDayCard key={d.dt}>
           <StyledRow>
             <StyledCenteredCardDaysCol>
               <StyledMediumInfo>
@@ -26,7 +25,7 @@ export const NextDays = ({ daily }: NextDaysProps) => {
               </StyledMediumInfo>
               <StyledInfoTitle>{d.weather.map(w => w.description)}</StyledInfoTitle>
               <img
-                src={`http://openweathermap.org/img/wn/${d.weather.map(w => w.icon)}.png`}
+                src={`http://openweathermap.org/img/wn/${d?.weather?.map(w => w.icon)}.png`}
                 alt="icon"
                 width="60px"
               />

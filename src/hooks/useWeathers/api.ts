@@ -4,8 +4,8 @@ import { WeatherResponseType } from '../../types/types'
 import { WeatherAppKey } from '../../utils'
 
 type Params = {
-  lat: number
-  lon: number
+  lat: number | undefined
+  lon: number | undefined
 }
 
 const getWeather = async (params: Params) => {

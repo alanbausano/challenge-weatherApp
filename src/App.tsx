@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider } from 'styled-components'
 
-import { CurrentLocation } from './components/features/current'
+import { WeatherLocation } from './components/features/current'
 import { theme } from './styles/theme'
 
 const queryClient = new QueryClient({
@@ -18,7 +18,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <CurrentLocation />
+        <WeatherLocation />
       </ThemeProvider>
     </QueryClientProvider>
   )

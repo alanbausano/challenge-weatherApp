@@ -10,4 +10,5 @@ export enum Strings {
   WIND = 'Wind: ',
   CURRENTLY = 'Currently: ',
   CHOOSE_LOCATION = 'Choose a different location',
+  LOCATION = 'Location',
 }

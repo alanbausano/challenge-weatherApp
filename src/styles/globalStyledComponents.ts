@@ -2,7 +2,7 @@ import { Card, Col, Row, Select } from 'antd'
 import styled from 'styled-components'
 
 const StyledCenteredContainer = styled.div`
-  padding: ${props => props.theme.md}!important;
+  padding: ${props => props.theme.md} !important;
   display: flex;
   justify-content: center;
 `
@@ -10,7 +10,7 @@ const StyledCenteredContainer = styled.div`
 const StyledCard = styled(Card)`
   padding: ${props => props.theme.sm};
   width: 1300px;
-  background-color: ${props => props.theme.cardBg};
+  background-color: ${props => props.theme.cardBg} !important;
   & .main {
     margin-top: ${props => props.theme.md} !important;
     margin-bottom: ${props => props.theme.md} !important;
@@ -65,14 +65,11 @@ const StyledDayCard = styled(Card)`
   text-align: center;
   width: 230px;
   background-color: ${props => props.theme.cardBg};
-  padding: ${props => props.theme.sm};
-  height: 280px;
+  height: ${props => props.theme.xl};
 `
 
 const StyledSelect = styled(Select)`
-  padding: 2px;
-  flex: 0.5;
-  display: flex;
+  flex: 1;
 `
 
 export {
